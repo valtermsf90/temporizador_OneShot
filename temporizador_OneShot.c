@@ -43,7 +43,7 @@ int64_t desligaLedAzul(alarm_id_t id, void *user_data)
 // função principal
 int main()
 {
-    // iniciando a comunicação serial
+    // iniciando a comunicao serial
     stdio_init_all();
 
     // configuração do pino LED
@@ -64,12 +64,13 @@ int main()
         sleep_ms(100);
         if (gpio_get(BT_A) == 0 && led_state == true)
         {
-            gpio_put(LED_R, led_state);
-            gpio_put(LED_G, led_state);
-            gpio_put(LED_B, led_state);
+            gpio_put(LED_R, 1);
+            gpio_put(LED_G, 1);
+            gpio_put(LED_B, 1);
             printf("Leds ligados\n");
             led_state = !led_state;
             add_alarm_in_ms(3000, desligaLedAzul, NULL, false);
         }
     }
+    return 0;
 }
