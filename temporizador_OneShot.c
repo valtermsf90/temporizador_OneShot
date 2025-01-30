@@ -19,6 +19,7 @@ int64_t desligaLedVerde(alarm_id_t id, void *user_data);
 int64_t desligaLedVermelho(alarm_id_t id, void *user_data)
 {
     gpio_put(LED_R, false);
+    printf("led vermelho desligado\n");
     add_alarm_in_ms(3000, desligaLedVerde, NULL, false);
     return 0;
 }
@@ -26,6 +27,7 @@ int64_t desligaLedVermelho(alarm_id_t id, void *user_data)
 int64_t desligaLedVerde(alarm_id_t id, void *user_data)
 {
     gpio_put(LED_G, false);
+    printf("led verde desligado\n");
     led_state = true;
     return 0;
 }
@@ -33,6 +35,7 @@ int64_t desligaLedVerde(alarm_id_t id, void *user_data)
 int64_t desligaLedAzul(alarm_id_t id, void *user_data)
 {
     gpio_put(LED_B, false);
+    printf("led azul desligado\n");
     add_alarm_in_ms(3000, desligaLedVermelho, NULL, false);
     return 0;
 }
@@ -64,6 +67,7 @@ int main()
             gpio_put(LED_R, led_state);
             gpio_put(LED_G, led_state);
             gpio_put(LED_B, led_state);
+            printf("Leds ligados\n");
             led_state = !led_state;
             add_alarm_in_ms(3000, desligaLedAzul, NULL, false);
         }
